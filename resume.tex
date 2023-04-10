@@ -4,25 +4,27 @@
 
 \NewDocumentCommand{\name}{mm}{
   \Huge{
-    \textbf{
+    \textbf{%
       \scshape{#1}
     }
   }
+}
+
+\NewDocumentCommand{\link}{mm}{
+  \small{%
+    \underline{#1}
+  }%
 }
 
 \begin{document}
 
 \name{Ben Rosen}{}
 
-\small{
-  \underline{benjamin.j.rosen@gmail.com}
-}
+\link{benjamin.j.rosen@gmail.com}{}
 $|$
 \small{(610) 291-3314}
 $|$
-\small{
-  \underline{github.com/tymbalodeon}
-}
+\link{github.com/tymbalodeon}{}
 
 \section{Work Experience}
 
