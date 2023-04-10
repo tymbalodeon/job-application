@@ -27,7 +27,16 @@
   \vspace{0.5em}
 }
 
-\NewDocumentCommand{\experience}{mmmm}{
+\NewDocumentCommand{\experience}{mmmmm}{
+  \item{
+    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 -- #3 \\
+      \textit{\small #4} & \textit{\small #5} \\
+    \end{tabular*}
+  }
+}
+
+\NewDocumentCommand{\education}{mmmm}{
   \item{
     \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
@@ -65,7 +74,8 @@
 \begin{itemize}[leftmargin=0em, label={}]
     \experience
         {University of Pennsylvania}
-        {May 2021--Present}
+        {May 2021}
+        {Present}
         {Courseware Developer}
         {Philadelphia, PA}
         \begin{itemize}
@@ -86,7 +96,8 @@
         \end{itemize}
     \experience
         {Vanguard}
-        {April 2020--April 2021}
+        {April 2020}
+        {April 2021}
         {Developer I}
         {Malvern, PA}
         \begin{itemize}
@@ -101,7 +112,8 @@
         \end{itemize}
     \experience
         {Freelance}
-        {2007--2009}
+        {2007}
+        {2009}
         {Music Instructor \& Audio Engineer}
         {Various}
         \begin{itemize}
@@ -123,17 +135,17 @@
 \underlinedSection{Education}
 
 \begin{itemize}[leftmargin=0em, label={}]
-    \experience
+    \education
         {Thinkful}
         {2019}
         {Engineering Immersion (Full-Time)}
         {Remote}
-    \experience
+    \education
         {The Peabody Institute of the Johns Hopkins University}
         {2013}
         {M.M., Composition}
         {Baltimore, M.D.}
-    \experience
+    \education
         {Sarah Lawrence College}
         {2010}
         {B.A.}
