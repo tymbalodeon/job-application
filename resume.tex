@@ -18,37 +18,42 @@
   }%
 }
 
-\NewDocumentCommand{\experience}{mmmm}{
-\item{
-  \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
-    \textbf{#1} & #2 \\
-    \textit{\small #3} & \textit{\small #4} \\
-  \end{tabular*}
+\NewDocumentCommand{\sectionLine}{}{
+  \hrule
+  \vspace{0.5em}
 }
+
+\NewDocumentCommand{\experience}{mmmm}{
+  \item{
+    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}
+  }
 }
 
 \NewDocumentCommand{\award}{mm}{
-\item{
-  \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
-    \textit{#1} & #2 \\
-  \end{tabular*}
-}
+  \item{
+    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{#1} & #2 \\
+    \end{tabular*}
+  }
 }
 
-\NewDocumentCommand{\sectionLine}{}{
-  \hrule
-  \vspace{1em}
-}
+\thispagestyle{empty}
 
 \begin{document}
 
 \begin{flushleft}
   \name{Ben Rosen} \\
+
+  \vspace{0.2em}
+
   \link{benjamin.j.rosen@gmail.com}
-  $|$
-  \small{(610) 291-3314}
-  $|$
-  \link{github.com/tymbalodeon}
+    $|$
+    \small{(610) 291-3314}
+    $|$
+    \link{github.com/tymbalodeon}
 \end{flushleft}
 
 \section*{Work Experience}
@@ -61,16 +66,48 @@
         {May 2021--Present}
         {Courseware Developer}
         {Philadelphia, PA}
+        \begin{itemize}[label=*]
+          \item \small Refactored entire university-wide Django site, upgrading
+            SQLite to Postgres, adding HTMX on the front end
+          \item \small Wrote first test suites for the site, added coverage,
+            pre-commit checks, Justfile commands
+          \item \small Collaborated with DevOps to establish deployment system
+            (Vagrant/Ansible/Docker)
+          \item \small Rewrote queries to Penn’s Oracle database following major
+            database restructuring
+          \item \small Created installable CLI application connecting to the
+            Canvas API to run tasks for staff across the university
+          \item \small Created scripts for archiving entire Canvas sites,
+            reporting on tool usage, among others
+          \item \small Audited tasks for expensive processes and implemented
+            caching when appropriate
+        \end{itemize}
     \experience
         {Vanguard}
-        {May 2021--Present}
+        {April 2020--April 2021}
         {Developer I}
         {Malvern, PA}
+        \begin{itemize}[label=*]
+          \item \small Wrote TypeScript, SCSS, unit tests for new features,
+            bug-fixes in Angular component library
+          \item \small Collaborated with accessibility team to ensure the
+            library conforms to WCAG standards
+          \item \small Provided support for internal teams consuming our library
+            in their applications
+          \item \small Collaborated with developers, designers, and strategists
+            using Agile methods
+        \end{itemize}
     \experience
         {Freelance}
         {2007--2009}
         {Music Instructor \& Audio Engineer}
         {Various}
+        \begin{itemize}[label=*]
+          \item \small Taught individual lessons and group classes in piano,
+            guitar, bass, music theory
+          \item \small Co-produced bass guitar sample library for Orange Tree
+            Samples (forthcoming)
+        \end{itemize}
 \end{itemize}
 
 \section*{Awards}
