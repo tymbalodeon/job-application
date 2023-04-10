@@ -19,56 +19,99 @@
 }
 
 \NewDocumentCommand{\experience}{mmmm}{
-  \item{
-    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small #3} & \textit{\small #4} \\
-    \end{tabular*}
-  }
+\item{
+  \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}
+}
+}
+
+\NewDocumentCommand{\award}{mm}{
+\item{
+  \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+    \textit{#1} & #2 \\
+  \end{tabular*}
+}
+}
+
+\NewDocumentCommand{\sectionLine}{}{
+  \hrule
+  \vspace{1em}
 }
 
 \begin{document}
 
-\name{Ben Rosen} \\
-\link{benjamin.j.rosen@gmail.com}
-$|$
-\small{(610) 291-3314}
-$|$
-\link{github.com/tymbalodeon}
+\begin{flushleft}
+  \name{Ben Rosen} \\
+  \link{benjamin.j.rosen@gmail.com}
+  $|$
+  \small{(610) 291-3314}
+  $|$
+  \link{github.com/tymbalodeon}
+\end{flushleft}
 
 \section*{Work Experience}
 
+\sectionLine
+
 \begin{itemize}[leftmargin=0em, label={}]
-  \experience{University of Pennsylvania}
-             {May 2021--Present}
-             {Courseware Developer}
-             {Philadelphia, PA}
-  \experience{Vanguard}
-             {May 2021--Present}
-             {Developer I}
-             {Malvern, PA}
-  \experience{Freelance}
-             {2007--2009}
-             {Music Instructor \& Audio Engineer}
-             {Various}
+    \experience
+        {University of Pennsylvania}
+        {May 2021--Present}
+        {Courseware Developer}
+        {Philadelphia, PA}
+    \experience
+        {Vanguard}
+        {May 2021--Present}
+        {Developer I}
+        {Malvern, PA}
+    \experience
+        {Freelance}
+        {2007--2009}
+        {Music Instructor \& Audio Engineer}
+        {Various}
 \end{itemize}
 
 \section*{Awards}
 
-UPenn Models of Excellence Award (Honorable Mention)
+\sectionLine
+
+\begin{itemize}[leftmargin=0em, label={}]
+  \award{UPenn Models of Excellence Award (Honorable Mention)}
+        {2022}
+\end{itemize}
 
 \section*{Education}
 
-Thinkful \\
-The Peabody Institute of the Johns Hopkins University \\
-Sarah Lawrence College
+\sectionLine
+
+\begin{itemize}[leftmargin=0em, label={}]
+    \experience
+        {Thinkful}
+        {2019}
+        {Engineering Immersion (Full-Time)}
+        {Remote}
+    \experience
+        {The Peabody Institute of the Johns Hopkins University}
+        {2013}
+        {M.M., Composition}
+        {Baltimore, M.D.}
+    \experience
+        {Sarah Lawrence College}
+        {2010}
+        {B.A.}
+        {Bronxville, NY}
+\end{itemize}
 
 \section*{Skills}
 
+\sectionLine
+
 \textbf{Front end:} TypeScript, JavaScript, Angular, React, Sass, Qwik \\
 \textbf{Back end:} Python, Typescript, JavaScript, Django, FastAPI, Express,
-  PostgreSQL \\
+PostgreSQL \\
 \textbf{Additional Skills:} Docker, Ansible, Shell, Scheme, Emacs Lisp, SCLang
-  (SuperCollider), LilyPond, Rust
+(SuperCollider), LilyPond, Rust
 
 \end{document}
