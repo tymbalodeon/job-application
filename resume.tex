@@ -1,13 +1,13 @@
-\documentclass{article}
-
 \usepackage{charter}
 \usepackage{enumitem}
 \usepackage{fullpage}
 
+\input{content.tex}
+
 \NewDocumentCommand{\name}{m}{
   \Huge{
     \textbf{%
-      \scshape{#1}
+      \textsc{#1}
     }
   }
 }
@@ -18,7 +18,9 @@
   }%
 }
 
-\NewDocumentCommand{\sectionLine}{}{
+\NewDocumentCommand{\underlinedSection}{m}{
+  \section*{#1}
+  \vspace{-0.5em}
   \hrule
   \vspace{0.5em}
 }
@@ -40,25 +42,24 @@
   }
 }
 
+\documentclass{article}
 \thispagestyle{empty}
 
 \begin{document}
 
-\begin{flushleft}
-  \name{Ben Rosen} \\
+\begin{center}
+  \name{\fullName}
 
   \vspace{0.2em}
 
-  \link{benjamin.j.rosen@gmail.com}
+  \link{\email}
     $|$
-    \small{(610) 291-3314}
+    \small{\phone}
     $|$
-    \link{github.com/tymbalodeon}
-\end{flushleft}
+    \link{\github}
+\end{center}
 
-\section*{Work Experience}
-
-\sectionLine
+\underlinedSection{Work Experience}
 
 \begin{itemize}[leftmargin=0em, label={}]
     \experience
@@ -110,18 +111,15 @@
         \end{itemize}
 \end{itemize}
 
-\section*{Awards}
-
-\sectionLine
+\underlinedSection{Awards}
 
 \begin{itemize}[leftmargin=0em, label={}]
-  \award{UPenn Models of Excellence Award (Honorable Mention)}
-        {2022}
+  \award
+      {UPenn Models of Excellence Award (Honorable Mention)}
+      {2022}
 \end{itemize}
 
-\section*{Education}
-
-\sectionLine
+\underlinedSection{Education}
 
 \begin{itemize}[leftmargin=0em, label={}]
     \experience
@@ -141,14 +139,12 @@
         {Bronxville, NY}
 \end{itemize}
 
-\section*{Skills}
-
-\sectionLine
+\underlinedSection{Skills}
 
 \textbf{Front end:} TypeScript, JavaScript, Angular, React, Sass, Qwik \\
 \textbf{Back end:} Python, Typescript, JavaScript, Django, FastAPI, Express,
-PostgreSQL \\
+  PostgreSQL \\
 \textbf{Additional Skills:} Docker, Ansible, Shell, Scheme, Emacs Lisp, SCLang
-(SuperCollider), LilyPond, Rust
+  (SuperCollider), LilyPond, Rust
 
 \end{document}
