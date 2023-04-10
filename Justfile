@@ -4,7 +4,7 @@
 @install *packages:
     sudo tlmgr install "{{packages}}"
 
-edit:
+edit file:
     #!/usr/bin/env zsh
     watchexec \
         --exts tex \
@@ -12,4 +12,4 @@ edit:
             -interaction nonstopmode \
             -halt-on-error \
             -file-line-error \
-            *.tex
+            {{file}}.tex

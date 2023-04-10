@@ -2,13 +2,17 @@
 
 \usepackage{ETbb}
 
-\begin{document}
-
-\Huge{
-  \textbf{
-    \scshape{Ben Rosen}
+\NewDocumentCommand{\name}{mm}{
+  \Huge{
+    \textbf{
+      \scshape{#1}
+    }
   }
 }
+
+\begin{document}
+
+\name{Ben Rosen}{}
 
 \small{
   \underline{benjamin.j.rosen@gmail.com}
@@ -24,7 +28,7 @@ $|$
 
 University of Pennsylvania \\
 Vanguard \\
-Freelance
+Freelance \\
 
 \section{Awards}
 
@@ -39,7 +43,9 @@ Sarah Lawrence College
 \section{Skills}
 
 \textbf{Front end:} TypeScript, JavaScript, Angular, React, Sass, Qwik \\
-\textbf{Back end:} Python, Typescript, JavaScript, Django, FastAPI, Express, PostgreSQL \\
-\textbf{Additional Skills:} Docker, Ansible, Shell, Scheme, Emacs Lisp, SCLang (SuperCollider), LilyPond, Rust
+\textbf{Back end:} Python, Typescript, JavaScript, Django, FastAPI, Express,
+  PostgreSQL \\
+\textbf{Additional Skills:} Docker, Ansible, Shell, Scheme, Emacs Lisp, SCLang
+  (SuperCollider), LilyPond, Rust
 
 \end{document}
