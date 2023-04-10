@@ -1,8 +1,10 @@
 \documentclass{article}
 
 \usepackage{charter}
+\usepackage{enumitem}
+\usepackage{fullpage}
 
-\NewDocumentCommand{\name}{mm}{
+\NewDocumentCommand{\name}{m}{
   \Huge{
     \textbf{%
       \scshape{#1}
@@ -10,28 +12,45 @@
   }
 }
 
-\NewDocumentCommand{\link}{mm}{
+\NewDocumentCommand{\link}{m}{
   \small{%
     \underline{#1}
   }%
 }
 
+\NewDocumentCommand{\experience}{mmmm}{
+  \item{
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}
+  }
+}
+
 \begin{document}
 
-\name{Ben Rosen}{}
-
-\link{benjamin.j.rosen@gmail.com}{}
+\name{Ben Rosen} \\
+\link{benjamin.j.rosen@gmail.com}
 $|$
 \small{(610) 291-3314}
 $|$
-\link{github.com/tymbalodeon}{}
+\link{github.com/tymbalodeon}
 
 \section*{Work Experience}
 
-\begin{itemize}
-  \item{University of Pennsylvania}
-  \item{Vanguard}
-  \item{Freelance}
+\begin{itemize}[leftmargin=0em, label={}]
+  \experience{University of Pennsylvania}
+             {May 2021--Present}
+             {Courseware Developer}
+             {Philadelphia, PA}
+  \experience{Vanguard}
+             {May 2021--Present}
+             {Developer I}
+             {Malvern, PA}
+  \experience{Freelance}
+             {2007--2009}
+             {Music Instructor \& Audio Engineer}
+             {Various}
 \end{itemize}
 
 \section*{Awards}
