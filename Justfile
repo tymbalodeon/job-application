@@ -6,4 +6,10 @@
 
 edit:
     #!/usr/bin/env zsh
-    watchexec --exts tex -- pdflatex -interaction nonstopmode -halt-on-error -file-line-error *.tex
+    watchexec \
+        --exts tex \
+        -- pdflatex \
+            -interaction nonstopmode \
+            -halt-on-error \
+            -file-line-error \
+            *.tex
