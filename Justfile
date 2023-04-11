@@ -4,8 +4,10 @@ export PDFS_DIRECTORY := ```
     pdfs_directory="${PDFS_DIRECTORY:-}"
     if [ -n "${pdfs_directory}" ]; then
         mkdir -p "${pdfs_directory}"
+    else
+        pdfs_directory="$(pwd)"
     fi
-    printf "%s" "${pdfs_directory}"
+    printf "${pdfs_directory}"
 ```
 
 @_help:
@@ -47,7 +49,7 @@ clean *files:
     extensions=(aux log)
     for file in "{{files}}"; do
         for extension in "${extensions[@]}"; do
-            rm "${PDFS_DIRECTORY}/${file:r}.${extension}"
+            rm -f "${PDFS_DIRECTORY}/${file:r}.${extension}"
         done
     done
 
