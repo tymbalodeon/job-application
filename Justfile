@@ -77,7 +77,7 @@ compile *files:
             -output-directory="${PDFS_DIRECTORY}" \
             -jobname="${output_name}" \
             "${file}" \
-            && just _clean "${output_name}"
+            && just _clean "${output_name}" || true
     done
 
 # List compiled PDFs

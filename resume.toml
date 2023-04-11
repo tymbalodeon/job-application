@@ -1,12 +1,12 @@
-[basics]
+[person]
 first_name = "Ben"
 last_name = "Rosen"
-email = "benjamin.j.rosen@gmail.com"
 phone = "6102913314"
-website = "https://www.github.com/tymbalodeon"
+email = "benjamin.j.rosen@gmail.com"
 city = "Philadelphia, PA"
+website = "https://www.github.com/tymbalodeon"
 
-[[basics.profiles]]
+[[social]]
 network = "LinkedIn"
 username = "user_name"
 url = "https://link-if-they-click"
@@ -20,7 +20,7 @@ concentration = ""
 start = ""
 end = "2010"
 
-[[work]]
+[[experience]]
 display = true
 name = "University of Pennsylvania"
 location = "Philadelphia, PA"
