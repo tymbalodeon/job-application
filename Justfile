@@ -14,28 +14,74 @@ export PDFS_DIRECTORY := ```
 @install *packages:
     sudo tlmgr install "{{packages}}"
 
-clean file:
+@installed:
+    sudo tlmgr list --only-installed
+
+_get_files *files:
     #!/usr/bin/env zsh
+    setopt extendedglob
+    if [ -z "{{files}}" ]; then
+        files=((^content)#*.tex(N))
+        echo "${files}"
+    else
+        files=()
+        for file in "{{files}}"; do
+            files+="${file}".tex
+        done
+    fi
+    if [ -z "${files[*]}" ]; then
+        exit
+    fi
+    printf "${files[@]}"
+
+clean *files:
+    #!/usr/bin/env zsh
+    if [ -z "{{files}}" ]; then
+        files=(*.tex(N))
+    else
+        files=({{files}})
+    fi
+    if [ -z "${files[*]}" ]; then
+        exit
+    fi
     extensions=(aux log)
-    for extension in "${extensions[@]}"; do
-        rm "${PDFS_DIRECTORY}/{{file}}.${extension}"
+    for file in "{{files}}"; do
+        for extension in "${extensions[@]}"; do
+            rm "${PDFS_DIRECTORY}/${file:r}.${extension}"
+        done
     done
 
-compile file:
+compile *files:
     #!/usr/bin/env zsh
-    pdflatex \
-        -interaction nonstopmode \
-        -halt-on-error \
-        -file-line-error \
-        -output-directory="${PDFS_DIRECTORY}" \
-        "{{file}}".tex \
-        && just clean "{{file}}"
+    files=$(just _get_files "{{files}}")
+    for file in "${files[@]}"; do
+        output_name="Ben Rosen ${${(C)file:r}/-/ }"
+        pdflatex \
+            -interaction nonstopmode \
+            -halt-on-error \
+            -file-line-error \
+            -output-directory="${PDFS_DIRECTORY}" \
+            -jobname="${output_name}" \
+            "${file}" \
+            && just clean "${output_name}"
+    done
 
-edit file: (compile file)
+compiled:
     #!/usr/bin/env zsh
-    file_name="${PDFS_DIRECTORY}/{{file}}"
-    open "${file_name}.pdf"
-    open "${file_name}.tex"
+    for file in "${PDFS_DIRECTORY}"/*.pdf; do
+        echo "${file}"
+    done
+
+edit *files: (compile files)
+    #!/usr/bin/env zsh
+    files=$(just _get_files "{{files}}")
+    for file in "${files[@]}"; do
+        extensions=(pdf tex)
+        for extension in "${extensions[@]}"; do
+            open "${PDFS_DIRECTORY}/${file}.${extension}"
+        done
+    done
+    echo "${files[1]}"
     watchexec \
         --exts tex \
-        just compile "{{file}}"
+        just compile
