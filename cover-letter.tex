@@ -3,33 +3,11 @@
 \usepackage{charter}
 \usepackage{fullpage}
 
-\NewDocumentCommand{\blah}{m}{
-  \Huge{
-    \textbf{%
-      \scshape{#1}
-    }
-  }
-}
-
-\NewDocumentCommand{\link}{m}{
-  \small{%
-    \underline{#1}
-  }%
-}
+\input{functions.tex}
 
 \begin{document}
 
-\begin{flushleft}
-    \blah{Ben Rosen} \\
-
-    \vspace{0.2em}
-
-    \link{benjamin.j.rosen@gmail.com}
-        $|$
-        \small{(610) 291-3314}
-        $|$
-        \link{github.com/tymbalodeon}
-\end{flushleft}
+\header
 
 Dear Hiring Manager,
 

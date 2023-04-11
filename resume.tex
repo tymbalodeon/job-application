@@ -5,69 +5,13 @@
 \usepackage{fullpage}
 
 \input{content.tex}
-
-\NewDocumentCommand{\name}{m}{
-  \Huge{
-    \textbf{%
-      \textsc{#1}
-    }
-  }
-}
-
-\NewDocumentCommand{\link}{m}{
-  \small{%
-    \underline{#1}
-  }%
-}
-
-\NewDocumentCommand{\underlinedSection}{m}{
-  \section*{#1}
-  \vspace{-0.5em}
-  \hrule
-  \vspace{0.5em}
-}
-
-\NewDocumentCommand{\experience}{mmmmm}{
-  \item{
-    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 -- #3 \\
-      \textit{\small #4} & \textit{\small #5} \\
-    \end{tabular*}
-  }
-}
-
-\NewDocumentCommand{\education}{mmmm}{
-  \item{
-    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small #3} & \textit{\small #4} \\
-    \end{tabular*}
-  }
-}
-
-\NewDocumentCommand{\award}{mm}{
-  \item{
-    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{#1} & #2 \\
-    \end{tabular*}
-  }
-}
+\input{functions.tex}
 
 \thispagestyle{empty}
 
 \begin{document}
 
-\begin{center}
-  \name{\fullName}
-
-  \vspace{0.2em}
-
-  \link{\email}
-    $|$
-    \small{\phone}
-    $|$
-    \link{\github}
-\end{center}
+\header
 
 \underlinedSection{Work Experience}
 
