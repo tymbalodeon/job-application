@@ -70,7 +70,7 @@ compile *files:
     files=($(just _get_files "{{files}}"))
     for file in "${files[@]}"; do
         output_name="$(just _get_output_name "${file}")"
-        pdflatex \
+        lualatex \
             -interaction nonstopmode \
             -halt-on-error \
             -file-line-error \

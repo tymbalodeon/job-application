@@ -1,0 +1,45 @@
+[basics]
+first_name = "Ben"
+last_name = "Rosen"
+email = "benjamin.j.rosen@gmail.com"
+phone = "6102913314"
+website = "https://www.github.com/tymbalodeon"
+city = "Philadelphia, PA"
+
+[[basics.profiles]]
+network = "LinkedIn"
+username = "user_name"
+url = "https://link-if-they-click"
+shorturl = "/shorter-name"
+
+[[education]]
+display = true
+institution = "Sarah Lawrence College"
+degree = "B.A."
+concentration = ""
+start = ""
+end = "2010"
+
+[[work]]
+display = true
+name = "University of Pennsylvania"
+location = "Philadelphia, PA"
+position = "Courseware Developer"
+start = "2021"
+end = "Present"
+summary = ""
+highlights = [
+"Add some highlights 1",
+"Add some highlights 2",
+"Add some highlights 3",
+]
+
+[[awards]]
+display = false
+title = ""
+date = ""
+
+[[projects]]
+name = "project name"
+url = "does-it-have-a-website.com"
+description = "a description of that thing"
