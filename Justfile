@@ -21,10 +21,14 @@ export PDFS_DIRECTORY := ```
 
 _get_files *files:
     #!/usr/bin/env zsh
-    setopt extendedglob
     if [ -z "{{files}}" ]; then
-        files=((^content)#*.tex(N))
-        echo "${files}"
+        files=()
+        for file in *.tex(N); do
+            if [[ "${file}" != "content.tex" ]] \
+                && [[ "${file}" != "functions.tex" ]]; then
+                files+="${file}"
+            fi
+        done
     else
         files=()
         for file in "{{files}}"; do
