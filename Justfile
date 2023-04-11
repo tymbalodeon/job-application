@@ -40,7 +40,7 @@ _get_files *files:
     if [ -z "${files[*]}" ]; then
         exit
     fi
-    printf "${files[@]}"
+    printf "${files[*]}"
 
 _clean *files:
     #!/usr/bin/env zsh
@@ -67,7 +67,7 @@ _get_output_name file:
 # Create PDF(s) in "${PDFS_DIRECTORY}"
 compile *files:
     #!/usr/bin/env zsh
-    files=$(just _get_files "{{files}}")
+    files=($(just _get_files "{{files}}"))
     for file in "${files[@]}"; do
         output_name="$(just _get_output_name "${file}")"
         pdflatex \
