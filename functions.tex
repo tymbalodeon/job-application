@@ -21,9 +21,12 @@
   \vspace{0.5em}
 }
 
+\def \tableWidth{0.98}
+\def \bulletStyle{\textbf{–}}
+
 \NewDocumentCommand{\experience}{mmmmm}{
   \item{
-    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\tableWidth\textwidth}{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 -- #3 \\
       \textit{\small #4} & \textit{\small #5} \\
     \end{tabular*}
@@ -32,7 +35,7 @@
 
 \NewDocumentCommand{\education}{mmmm}{
   \item{
-    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\tableWidth\textwidth}{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small #3} & \textit{\small #4} \\
     \end{tabular*}
