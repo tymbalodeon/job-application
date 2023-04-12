@@ -1,7 +1,7 @@
 [doc]
-name = 'cover-letter'
-bundle = 'https://data1.fullyjustified.net/tlextras-2022.0r0.tar'
+name = "cover-letter"
+bundle = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
 
 [[output]]
-name = 'Ben Rosen Cover Letter'
-type = 'pdf'
+name = "Ben Rosen Cover Letter"
+type = "pdf"

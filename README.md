@@ -1,5 +1,5 @@
 # Job Application
 
-## Resume
+Manage resumes and cover-letters created with LaTeX.
 
-## Cover letter
+Designed to be used with [Tectonic](https://tectonic-typesetting.github.io/en-US/).

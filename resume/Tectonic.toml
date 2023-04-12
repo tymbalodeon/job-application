@@ -1,7 +1,7 @@
 [doc]
-name = 'resume'
-bundle = 'https://data1.fullyjustified.net/tlextras-2022.0r0.tar'
+name = "resume"
+bundle = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
 
 [[output]]
-name = 'Ben Rosen Resume'
-type = 'pdf'
+name = "Ben Rosen Resume"
+type = "pdf"
