@@ -59,7 +59,11 @@ edit file: (build file)
             open "${file}"
         done
     fi
-    {{tectonic}} watch
+    tectonic_directories=($(just _get_tectonic_directories {{file}}))
+    for directory in "${tectonic_directories[@]}"; do
+        cd "${directory}"
+        {{tectonic}} watch
+    done
 
 # Remove <FILE> pdf
 clean file:
