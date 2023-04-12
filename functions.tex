@@ -14,12 +14,12 @@
 
 \NewDocumentCommand{\underlinedSection}{m}{
   \section*{#1}
-  \vspace{-0.5em}
+  \vspace{-1em}
   \hrule
-  \vspace{0.5em}
+  \vspace{0.8em}
 }
 
-\def \tableWidth{.99}
+\def \tableWidth{.98}
 \def \bulletStyle{$\bullet$}
 
 \NewDocumentCommand{\experience}{mmmmm}{
@@ -60,4 +60,11 @@
       $|$
       \link{#4}
   \end{center}
+}
+
+\NewDocumentCommand{\resumeSection}{mm}{
+  \underlinedSection{#1}
+  \begin{itemize}[leftmargin=*, label={}]
+    #2
+  \end{itemize}
 }
