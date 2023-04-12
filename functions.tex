@@ -49,17 +49,20 @@
 }
 
 \NewDocumentCommand{\header}{mmmm}{
-  \begin{center}
+  \begin{flushleft}
     \nameHeader{#1}
 
-    \vspace{0.2em}
+    \vspace{0.1em}
 
     \link{#2}
       $|$
       \small{#3}
       $|$
       \link{#4}
-  \end{center}
+
+
+    \vspace{0.8em}
+  \end{flushleft}
 }
 
 \NewDocumentCommand{\resumeSection}{mm}{
