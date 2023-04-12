@@ -8,9 +8,10 @@ _get_tectonic_directories *file:
     setopt extendedglob
     if [[ -n *"{{file}}"*(#qN) ]]; then
         directories=(
-            $(find *"{{file}}"* \
-                -type f \
-                -name "Tectonic.toml" \
+            $(
+                find *"{{file}}"* \
+                    -type f \
+                    -name "Tectonic.toml" \
                 | sed -E "s|/[^/]+$||" \
                 | uniq
             )
@@ -81,3 +82,14 @@ clean *files:
         rm -f "${file}"
         echo "Removed ${file}."
     done
+
+# echo content | pandoc --template resume-template.tex --output resume.tex
+fill-template:
+    #!/usr/bin/env zsh
+    content="---\n$(cat resume.yaml)\n---"
+    echo "${content}" \
+    | pandoc \
+        --metadata title=resume \
+        --template resume-template.tex \
+        --output resume.tex
+    xelatex resume.tex

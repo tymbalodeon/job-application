@@ -1,10 +1,32 @@
+\documentclass{article}
+
+\begin{document}
+
+$if(person)$
+\section*{Person}
+
+\def \fullName{%
+  $if(person.first_name)$$person.first_name$$endif$
+  $if(person.last_name)$$person.last_name$$endif$
+}
+
+\textbf{Name:} \fullName \\
+$if(person.city)$\textbf{City:} $person.city$$else$%$endif$ \\
+$if(person.phone)$\textbf{Phone:} $person.phone$$else$%$endif$ \\
+$if(person.email)$\textbf{Email:} $person.email$$else$%$endif$ \\
+$if(person.website)$\textbf{Website:} $person.website$$else$%$endif$ \\
+$endif$
+
 $if(education)$
 \section*{Education}
-\noindent
 $for(education)$
-  \note{$education.institution$}
+  \noindent
+  \textbf{$education.institution$}, \textit{$education.end$} \\
   \textbf{$education.degree$}
-  $if(education.concentration)$,$education.concentration$$endif$\\
-  \emph{$education.start$} \\[.2cm]
+  $if(education.concentration)$, \textit{$education.concentration$}$endif$
+  \vspace{1em}
+
 $endfor$
 $endif$
+
+\end{document}
