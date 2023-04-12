@@ -1,0 +1,10 @@
+$if(education)$
+\section*{Education}
+\noindent
+$for(education)$
+  \note{$education.institution$}
+  \textbf{$education.degree$}
+  $if(education.concentration)$,$education.concentration$$endif$\\
+  \emph{$education.start$} \\[.2cm]
+$endfor$
+$endif$
