@@ -14,6 +14,14 @@ shorturl = "/shorter-name"
 
 [[education]]
 display = true
+institution = "Peabody Institute of the Johns Hopkins University"
+degree = "M.M."
+concentration = "Composition"
+start = ""
+end = "2013"
+
+[[education]]
+display = true
 institution = "Sarah Lawrence College"
 degree = "B.A."
 concentration = ""
