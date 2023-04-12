@@ -93,3 +93,13 @@ fill-template:
         --template resume-template.tex \
         --output resume.tex
     xelatex resume.tex
+
+resume:
+    #!/usr/bin/env zsh
+    content="---\n$(cat resume/resume.yaml)\n---"
+    echo "${content}" \
+    | pandoc \
+        --metadata title=resume \
+        --template resume/src/template.tex \
+        --output resume/src/index.tex
+    just build resume

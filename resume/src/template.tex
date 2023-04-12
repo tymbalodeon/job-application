@@ -1,0 +1,78 @@
+$if(person)$
+\def \fullName{%
+  $if(person.first_name)$$person.first_name$$endif$
+  $if(person.last_name)$$person.last_name$$endif$
+}
+
+\header
+    {\fullName}
+    {$person.email$}
+    {$person.phone$}
+    {$person.website$}
+$endif$
+
+$if(experience)$
+\underlinedSection{Work Experience}
+
+\begin{itemize}[leftmargin=0em, label={}]
+    $for(experience)$
+    \experience
+        {$experience.employer$}
+        {$experience.start$}
+        {$experience.end$}
+        {$experience.position$}
+        {$experience.location$}
+
+    \begin{itemize}
+      $for(experience.highlights)$
+        \item
+            \begin{small}
+                $experience.highlights$
+            \end{small}
+        $endfor$
+    \end{itemize}
+    $endfor$
+\end{itemize}
+$endif$
+
+$if(awards)$
+\underlinedSection{Awards}
+
+\begin{itemize}[leftmargin=0em, label={}]
+    $for(awards)$
+    \award
+        {$awards.title$}
+        {$awards.year$}
+    $endfor$
+\end{itemize}
+$endif$
+
+$if(education)$
+\underlinedSection{Education}
+
+\begin{itemize}[leftmargin=0em, label={}]
+    $for(education)$
+    \education
+        {$education.institution$}
+        {$education.end$}
+        {$education.degree$}
+        {$education.location$}
+    $endfor$
+\end{itemize}
+$endif$
+
+$if(skills)$
+\underlinedSection{Skills}
+
+\begin{itemize}[leftmargin=0.8em, label={}]
+    $for(skills)$
+        \item \textbf{$skills.name$:}
+          $for(skills.skills)$
+            \begin{small}%
+                $skills.skills$,%
+            \end{small}
+          $endfor$
+          \vspace{-0.8em}
+    $endfor$
+\end{itemize}
+$endif$

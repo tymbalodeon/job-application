@@ -1,10 +1,3 @@
-\def \firstName{Ben}
-\def \lastName{Rosen}
-\def \fullName{\firstName \space \lastName}
-\def \email{benjamin.j.rosen@gmail.com}
-\def \phone{(610) 291-3314}
-\def \github{github.com/tymbalodeon}
-
 \NewDocumentCommand{\nameHeader}{m}{
   \Huge{
     \textbf{%
@@ -26,7 +19,7 @@
   \vspace{0.5em}
 }
 
-\def \tableWidth{0.98}
+\def \tableWidth{.99}
 \def \bulletStyle{$\bullet$}
 
 \NewDocumentCommand{\experience}{mmmmm}{
@@ -49,22 +42,22 @@
 
 \NewDocumentCommand{\award}{mm}{
   \item{
-    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\tableWidth\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{#1} & #2 \\
     \end{tabular*}
   }
 }
 
-\def \header{
+\NewDocumentCommand{\header}{mmmm}{
   \begin{center}
-    \nameHeader{\fullName}
+    \nameHeader{#1}
 
     \vspace{0.2em}
 
-    \link{\email}
+    \link{#2}
       $|$
-      \small{\phone}
+      \small{#3}
       $|$
-      \link{\github}
+      \link{#4}
   \end{center}
 }
