@@ -3,40 +3,57 @@
 
 tectonic := "tectonic -X"
 
-# Build all files
-build:
+_get_tectonic_directories *file:
     #!/usr/bin/env zsh
-    IFS=$'\n'
-    tectonic_directories=(
-        $(find . \
-            -type f \
-            -name "Tectonic.toml" \
-            | sed -E "s|/[^/]+$||" \
-            | uniq
+    setopt extendedglob
+    if [[ -n *"{{file}}"*(#qN) ]]; then
+        directories=(
+            $(find *"{{file}}"* \
+                -type f \
+                -name "Tectonic.toml" \
+                | sed -E "s|/[^/]+$||" \
+                | uniq
+            )
         )
-    )
+    else
+        directories=()
+    fi
+    printf "${directories[*]}"
+
+# Build all files
+build *files:
+    #!/usr/bin/env zsh
+    setopt extendedglob
+    if [ -z "{{files}}" ]; then
+        tectonic_directories=($(just _get_tectonic_directories))
+    else
+        files=({{files}})
+        tectonic_directories=()
+        for file in "${files[@]}"; do
+            directories=($(just _get_tectonic_directories "${file}"))
+            tectonic_directories+="${directories}"
+        done
+    fi
+    if [ "${tectonic_directories[*]}" -eq 0 ]; then
+        exit
+    fi
     base_directory="$(pwd)"
     for directory in "${tectonic_directories[@]}"; do
-        cd "${base_directory}/${directory/.\//}"
+        cd "${base_directory}/${directory}"
         {{tectonic}} build
     done
 
-compile file:
-    #!/usr/bin/env zsh
-    cd "{{file}}"
-    {{tectonic}} build
-
 # Open file for editing and view output, recompiling on changes
-edit file: (compile file)
+edit file: (build file)
     #!/usr/bin/env zsh
-    cd "{{file}}"
-    pdf_files=(**/**.pdf(N))
+    setopt extendedglob
+    pdf_files=(*"{{file}}"*/**/*.pdf(N))
     if [ -n "${pdf_files[*]}" ]; then
         for file in "${pdf_files[@]}"; do
             open "${file}"
         done
     fi
-    tex_files=(**/**index.tex(N))
+    tex_files=(*"{{file}}"*/src/index.tex(N))
     if [ -n "${tex_files[*]}" ]; then
         for file in "${tex_files[@]}"; do
             open "${file}"
