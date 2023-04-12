@@ -16,6 +16,7 @@ $if(experience)$
 
 \begin{itemize}[label={}, leftmargin=*]
     $for(experience)$
+    $if(experience.display)$
     \experience
         {$experience.employer$}
         {$experience.start$}
@@ -31,20 +32,25 @@ $if(experience)$
             \end{small}
         $endfor$
     \end{itemize}
+    $endif$
     $endfor$
 \end{itemize}
 $endif$
 
 $if(awards)$
+$if(awards.display)$
 \underlinedSection{Awards}
 
-\begin{itemize}[label={}, leftmargin=*]
-    $for(awards)$
-    \award
-        {$awards.title$}
-        {$awards.year$}
+\begin{itemize}[label={}, leftmargin=*, nosep]
+    $for(awards.awards)$
+        $if(it.display)$
+            \award
+                {$it.title$}
+                {$it.year$}
+        $endif$
     $endfor$
 \end{itemize}
+$endif$
 $endif$
 
 $if(education)$
@@ -52,11 +58,13 @@ $if(education)$
 
 \begin{itemize}[label={}, leftmargin=*]
     $for(education)$
+    $if(education.display)$
     \education
         {$education.institution$}
         {$education.end$}
         {$education.degree$}
         {$education.location$}
+    $endif$
     $endfor$
 \end{itemize}
 $endif$
@@ -66,12 +74,14 @@ $if(skills)$
 
 \begin{itemize}[label={}, leftmargin=*, nosep]
     $for(skills)$
+    $if(skills.display)$
         \item \textbf{$skills.name$:}
           $for(skills.skills)$
             \begin{small}%
                 $skills.skills$,%
             \end{small}
           $endfor$
+        $endif$
     $endfor$
 \end{itemize}
 $endif$

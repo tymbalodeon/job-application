@@ -88,12 +88,15 @@ education:
     display: true
 
 awards:
-  - title: UPenn Models of Excellence Award (Honorable Mention)
-    year: 2022
-    display: false
+  display: true
+  awards:
+    - title: UPenn Models of Excellence Award (Honorable Mention)
+      year: 2022
+      display: true
 
 skills:
   - name: Front end
+    display: true
     skills:
       - TypeScript
       - JavaScript
@@ -103,6 +106,7 @@ skills:
       - Qwik
 
   - name: Back end
+    display: true
     skills:
       - Python
       - Typescript
@@ -113,6 +117,7 @@ skills:
       - PostgreSQL
 
   - name: Additional skills
+    display: true
     skills:
       - Docker
       - Ansible
