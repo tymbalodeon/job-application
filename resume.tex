@@ -1,6 +1,21 @@
 \documentclass{article}
 
+\usepackage{enumitem}
+\usepackage{fontspec}
+
+\setmainfont{Charter}
+
 \begin{document}
+
+\def \tableWidth{}
+\NewDocumentCommand{\education}{mmmm}{
+  \item{
+    \begin{tabular*}{\tableWidth\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2} \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}
+  }
+}
 
 \section*{Person}
 
@@ -16,18 +31,22 @@
 \textbf{Website:} https://www.github.com/tymbalodeon \\
 
 \section*{Education}
-  \noindent
-  \textbf{Peabody Institute of the Johns Hopkins
-University}, \textit{2013} \\
-  \textbf{M.M.}
-  , \textit{Composition}
-  \vspace{1em}
-
-  \noindent
-  \textbf{Sarah Lawrence College}, \textit{2010} \\
-  \textbf{B.A.}
-  
-  \vspace{1em}
-
+\begin{itemize}[leftmargin=-0.6em, label={}]
+\education
+    {Thinkful}
+    {2019}
+    {Engineering Immersion (Full-Time)}
+    {Remote}
+\education
+    {Peabody Institute of the Johns Hopkins University}
+    {2013}
+    {M.M.}
+    {Baltimore, MD}
+\education
+    {Sarah Lawrence College}
+    {2010}
+    {B.A.}
+    {Bronxville, NY}
+\end{itemize}
 
 \end{document}

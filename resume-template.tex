@@ -1,6 +1,21 @@
 \documentclass{article}
 
+\usepackage{enumitem}
+\usepackage{fontspec}
+
+\setmainfont{Charter}
+
 \begin{document}
+
+\def \tableWidth{}
+\NewDocumentCommand{\education}{mmmm}{
+  \item{
+    \begin{tabular*}{\tableWidth\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2} \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}
+  }
+}
 
 $if(person)$
 \section*{Person}
@@ -19,14 +34,15 @@ $endif$
 
 $if(education)$
 \section*{Education}
+\begin{itemize}[leftmargin=-0.6em, label={}]
 $for(education)$
-  \noindent
-  \textbf{$education.institution$}, \textit{$education.end$} \\
-  \textbf{$education.degree$}
-  $if(education.concentration)$, \textit{$education.concentration$}$endif$
-  \vspace{1em}
-
+\education
+    {$education.institution$}
+    {$education.end$}
+    {$education.degree$}
+    {$education.location$}
 $endfor$
+\end{itemize}
 $endif$
 
 \end{document}

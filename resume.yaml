@@ -25,11 +25,20 @@ projects:
     url: does-it-have-a-website.com
 
 education:
+  - institution: Thinkful
+    degree: "Engineering Immersion (Full-Time)"
+    concentration: ""
+    start: ""
+    end: "2019"
+    location: Remote
+    display: true
+
   - institution: Peabody Institute of the Johns Hopkins University
     degree: M.M.
     concentration: Composition
     start: ""
     end: "2013"
+    location: Baltimore, MD
     display: true
 
   - institution: Sarah Lawrence College
@@ -37,6 +46,7 @@ education:
     concentration: ""
     start: ""
     end: "2010"
+    location: Bronxville, NY
     display: true
 
 awards:
