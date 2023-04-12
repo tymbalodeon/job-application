@@ -66,7 +66,18 @@ edit file: (build file)
     done
 
 # Remove <FILE> pdf
-clean file:
+clean *files:
     #!/usr/bin/env zsh
-    cd "{{file}}"
-    rm -f **/**.pdf
+    if [ -z "{{files}}" ]; then
+        pdf_files=(**/**.pdf(N))
+    else
+        pdf_files=()
+        files=({{files}})
+        for file in "${files[@]}"; do
+            pdf_files+=(*"${file}"*/**/*.pdf(N))
+        done
+    fi
+    for file in "${pdf_files[@]}"; do
+        rm -f "${file}"
+        echo "Removed ${file}."
+    done
