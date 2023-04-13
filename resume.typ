@@ -7,6 +7,8 @@
 #let github = "github.com/tymbalodeon"
 #let city = "Philadelphia, PA"
 
+#let space = v(0.5em)
+
 #show heading.where(
   level: 1
 ): set text(1.8em)
@@ -20,7 +22,7 @@
         #items.last()
     ]
 
-    v(1em)
+    space
 }
 
 #show heading.where(
@@ -48,7 +50,7 @@
         - #highlight
     ]
 
-    #v(1em)
+    #space
 ]
 
 #let award(title, year) = [
@@ -135,6 +137,8 @@
 == Awards
 #award("UPenn Models of Excellence Award (Honorable Mention)", 2022)
 
+#space
+
 == Education
 #education(
     "Thinkful",
@@ -156,6 +160,8 @@
     "B.A.",
     "2010"
 )
+
+#space
 
 == Skills
 #skill("Front end", ("TypeScript", "JavaScript", "Angular", "React", "Sass", "Qwik"))
