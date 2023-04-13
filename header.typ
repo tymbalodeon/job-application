@@ -12,7 +12,7 @@
     [(#areaCode) #prefix - #number]
 }
 
-#let space = v(1em)
+#let space = v(0.8em)
 
 #let contact(items) = {
     for item in items.slice(0, -1) [
@@ -20,7 +20,6 @@
     ]
 
     [#items.last()]
-    space
 }
 
 #let header = {
@@ -34,4 +33,5 @@
         = #text(2em, name)
         #contact((email, phone, github, city))
     ]
+    space
 }
