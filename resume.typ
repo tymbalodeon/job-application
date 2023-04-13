@@ -7,7 +7,7 @@
   level: 2
 ): heading => [
     #heading
-    #v(-0.8em)
+    #v(-0.6em)
     #line(length: 100%)
 ]
 

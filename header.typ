@@ -12,7 +12,7 @@
     [(#areaCode) #prefix - #number]
 }
 
-#let space = v(0.5em)
+#let space = v(1em)
 
 #let contact(items) = {
     for item in items.slice(0, -1) [
@@ -26,7 +26,15 @@
     space
 }
 
-#let header = [
-    = #text(2em, name)
-    #contact((email, format_phone(phone), github, city))
-]
+#let header = {
+    let email = link(email)
+    let phone = format_phone(phone)
+    let github = link(github)
+
+    show link: underline
+
+    [
+        = #text(2em, name)
+        #contact((email, phone, github, city))
+    ]
+}
