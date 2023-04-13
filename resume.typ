@@ -1,5 +1,9 @@
-#import "header.typ": header, space
+#import "header.typ": name, header, space
 
+#set document(
+    title: name + " Resume",
+    author: name
+)
 #set page(paper: "us-letter")
 #set text(10pt)
 
