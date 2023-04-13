@@ -1,3 +1,6 @@
+#set page(paper: "us-letter")
+#set text(10pt)
+
 #let name = "Ben Rosen"
 #let email = "benjamin.j.rosen@gmail.com"
 #let phone = 6102913314
