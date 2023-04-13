@@ -1,3 +1,5 @@
+#set par(justify: true)
+
 Dear Hiring Manager,
 
 Thank you for considering my application for the position of Senior Full-stack
