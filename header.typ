@@ -19,10 +19,7 @@
         #item |
     ]
 
-    [
-        #items.last()
-    ]
-
+    [#items.last()]
     space
 }
 

@@ -20,12 +20,14 @@
         ],
         align(right)[
             #strong[#start -- #end] \
-            #location
+            #emph[#location]
         ]
     )
 
-    #for highlight in highlights [
-        - #highlight
+    #pad(left: 1em)[
+        #for highlight in highlights [
+            - #highlight
+        ]
     ]
 
     #space
@@ -52,7 +54,7 @@
         ],
         align(right)[
             #strong[#year] \
-            #location
+            #emph[#location]
         ]
     )
 ]
