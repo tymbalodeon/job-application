@@ -74,6 +74,14 @@
     )
 ]
 
+#let skill(name, skills) = box[
+    #strong[#name:]
+    #for skill in skills.slice(0, -1) [
+        #skill,
+    ]
+    #skills.last()
+]
+
 = #name
 #contact((email, phone, github, city))
 
@@ -109,10 +117,29 @@
     )
 )
 
+#experience(
+    "Freelance",
+    "Various",
+    "Music Instructo & Audio Engineer",
+    "2007",
+    "2019",
+    (
+      "Taught individual lessons and group classes in piano, guitar, bass, music theory",
+      "Co-produced bass guitar sample library for Orange Tree Samples (forthcoming)"
+    )
+)
+
 == Awards
 #award("UPenn Models of Excellence Award (Honorable Mention)", 2022)
 
 == Education
+#education(
+    "Thinkful",
+    "Remote",
+    "Engineering Immersion (Full-Time)",
+    "2019"
+)
+
 #education(
     "Peabody Institute of the Johns Hopkins University",
     "Baltimore, MD",
@@ -128,3 +155,6 @@
 )
 
 == Skills
+#skill("Front end", ("TypeScript", "JavaScript", "Angular", "React", "Sass", "Qwik"))
+#skill("Back end", ("Python", "Typescript", "JavaScript", "Django", "FastAPI", "Express", "PostgreSQL"))
+#skill("Additional", ("Docker", "Ansible", "Shell", "Scheme", "Emacs Lisp", "SCLang (SuperCollider)", "LilyPond", "Rust"))
