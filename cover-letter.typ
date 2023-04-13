@@ -1,7 +1,7 @@
 #import "header.typ": header
 
 #set page(paper: "us-letter")
-#set text(10pt)
+#set text(10.8pt)
 #set par(justify: true)
 
 #header
