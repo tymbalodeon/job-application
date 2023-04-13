@@ -17,7 +17,7 @@
         #items.last()
     ]
 
-    v(2em)
+    v(1em)
 }
 
 #show heading.where(
