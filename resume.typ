@@ -28,11 +28,34 @@
     #line(length: 100%)
 ]
 
+#let experience(employer, location, position, start, end) = [
+#grid(
+    columns: (auto, 1fr),
+    align(left)[#strong[#employer] \ #emph[#position]],
+    align(right)[#strong[#start -- #end] \ #location]
+)
+]
 
 = #name
 #contact((email, phone, github, city))
 
 == Work Experience
+#experience(
+    "Univeristy of Pennsylvania",
+    "Philadelphia, PA",
+    "Courseware Developer",
+    "May 2021",
+    "Present"
+)
+
+#experience(
+    "Vanguard",
+    "Malvern, PA",
+    "Developer I",
+    "April 2020",
+    "April 2021"
+)
+
 == Awards
 == Education
 == Skills
