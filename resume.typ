@@ -164,6 +164,39 @@
 #space
 
 == Skills
-#skill("Front end", ("TypeScript", "JavaScript", "Angular", "React", "Sass", "Qwik"))
-#skill("Back end", ("Python", "Typescript", "JavaScript", "Django", "FastAPI", "Express", "PostgreSQL"))
-#skill("Additional", ("Docker", "Ansible", "Shell", "Scheme", "Emacs Lisp", "SCLang (SuperCollider)", "LilyPond", "Rust"))
+#skill(
+    "Front end",
+    (
+        "TypeScript",
+        "JavaScript",
+        "Angular",
+        "React",
+        "Sass",
+        "Qwik"
+    )
+)
+#skill(
+    "Back end",
+    (
+        "Python",
+        "Typescript",
+        "JavaScript",
+        "Django",
+        "FastAPI",
+        "Express",
+        "PostgreSQL"
+    )
+)
+#skill(
+    "Additional",
+    (
+        "Docker",
+        "Ansible",
+        "Shell",
+        "Scheme",
+        "Emacs Lisp",
+        "SCLang (SuperCollider)",
+        "LilyPond",
+        "Rust"
+    )
+)
