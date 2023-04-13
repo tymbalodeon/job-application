@@ -1,4 +1,11 @@
+#import "header.typ": header
+
 #set par(justify: true)
+
+#header
+#v(-0.5em)
+#line(length: 100%)
+#v(0.5em)
 
 Dear Hiring Manager,
 
