@@ -26,12 +26,12 @@ export PDFS_DIRECTORY := ```
     just --list
 
 # Open resume for editing, with live updates
-resume:
+@resume:
     open "{{resume_input}}" \
     && typst watch "{{resume_input}}" "{{resume_output}}" --open
 
 # Open cover-letter for editing, with live updates
-cover-letter:
+@cover-letter:
     open "{{cover_letter_input}}" \
     && typst watch "{{cover_letter_input}}" "{{cover_letter_output}}" --open
 
