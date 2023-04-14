@@ -32,12 +32,12 @@
 ]
 
 #let make-award(award) = [
-    #let (title, year) = award
+    #let (name, year) = award
 
     #grid(
         columns: (auto, 1fr),
         align(left)[
-            #emph[#title]
+            #emph[#name]
         ],
         align(right)[
             #strong[#year]
@@ -107,7 +107,7 @@
     #space
 
     == Skills
-    #for skill in skills {
-        make-skill(skill)
-    }
+    #for skill in skills [
+        #make-skill(skill) \
+    ]
 ]

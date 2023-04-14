@@ -1,6 +1,44 @@
-- person:
-    - name: "First Last"
-    - email: "first.last@gmail.com"
-    - phone: 0123456789
-    - github: "github.com/firstlast"
-    - city: "City, ST"
+person:
+  name: "First Last"
+  email: "first.last@gmail.com"
+  phone: 0123456789
+  github: "github.com/firstlast"
+  city: "City, ST"
+
+experience:
+  - employer: "Company"
+    location: "City, ST"
+    position: "Resume writer"
+    start: "January 2020"
+    end: "Present"
+    highlights:
+      - "Wrote Resume format in Typst"
+      - "Wrote scripts to make compilation easier"
+    tags:
+      - "short"
+      - "resume"
+
+awards:
+  - name: "Best Resume"
+    year: 2023
+
+education:
+  - institution: "School"
+    location: "City, ST"
+    degree: "B.A."
+    concentration:
+    year: 2023
+
+skills:
+  - name: "Front end"
+    skills:
+      - "JavaScript"
+      - "React"
+  - name: "Back end"
+    skills:
+      - "JavaScript"
+      - "Express"
+  - name: "Additional skills"
+    skills:
+      - "Scheme"
+      - "Shell"

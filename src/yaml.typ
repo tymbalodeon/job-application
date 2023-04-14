@@ -1,23 +1,14 @@
 #let resume-yaml = yaml("../resume.example.yaml")
 
-#let get-section(section-name) = {
-    for sections in resume-yaml {
-        for section in sections {
-            if section.first() == section-name {
-                    section.last()
-                    break
-                }
-            }
-        }
-}
+#let person = resume-yaml.person
 
-#let person = get-section("person")
+#let name = person.name
+#let email = person.email
+#let phone = person.phone
+#let github = person.github
+#let city = person.city
 
-#let get-person-property(property-name) = {
-    for property in person {
-        if property-name in property.keys() {
-            property.values().first()
-            break
-        }
-    }
-}
+#let experiences = resume-yaml.experience
+#let awards = resume-yaml.awards
+#let education = resume-yaml.education
+#let skills = resume-yaml.skills
