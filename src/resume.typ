@@ -7,16 +7,21 @@
 #set page(paper: "us-letter")
 #set text(10pt)
 
-#show heading.where(
-  level: 2
-): heading => [
+#show heading.where(level: 2): heading => [
     #heading
     #v(-0.7em)
     #line(length: 100%)
 ]
 
-#let format_experience(experience) = [
-    #let (employer, location, position, start, end, highlights) = thing
+#let make_experience(experience) = [
+    #let (
+        employer,
+        location,
+        position,
+        start,
+        end,
+        highlights
+    ) = experience
 
     #grid(
         columns: (auto, 1fr),
@@ -39,8 +44,8 @@
     #space
 ]
 
-#let award(item) = [
-    #let (title, year) = item
+#let make_award(award) = [
+    #let (title, year) = award
 
     #grid(
         columns: (auto, 1fr),
@@ -53,8 +58,8 @@
 )
 ]
 
-#let education(item) = [
-    #let (institution, location, degree, year) = item
+#let make_degree(degree) = [
+    #let (institution, location, degree, year) = degree
 
     #grid(
         columns: (auto, 1fr),
@@ -69,8 +74,8 @@
     )
 ]
 
-#let skill(item) = box[
-    #let (name, skills) = item
+#let make_skill(skill) = box[
+    #let (name, skills) = skill
 
     #strong[#name:]
     #for skill in skills.slice(0, -1) [
@@ -83,25 +88,28 @@
     #header
 
     == Work Experience
-    for experience in experiences {
-        format_experience(experience)
+    #for experience in experiences {
+        make_experience(experience)
     }
 
     == Awards
-    for award in awards {
-        #award(award)
+    #for award in awards {
+        make_award(award)
     }
 
     #space
 
     == Education
-    for degree in education {
-        #education(degree)
+    #for degree in education {
+        make_degree(degree)
     }
 
     #space
 
     == Skills
+    #for skill in skills {
+        make_skill(skill)
+    }
 ]
 
 #let experiences = (
@@ -162,7 +170,7 @@
     ),
     (
         institution: "Peabody Institute of the Johns Hopkins University",
-        locaiton: "Baltimore, MD",
+        location: "Baltimore, MD",
         degree: "M.M.",
         year: "2013"
     ),
