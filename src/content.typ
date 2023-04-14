@@ -1,4 +1,4 @@
-#let resume-yaml = yaml("../resume.example.yaml")
+#let resume-yaml = yaml("../resume.yaml")
 
 #let person = resume-yaml.person
 
