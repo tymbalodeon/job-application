@@ -1,5 +1,7 @@
-#let cover-letter = yaml("../cover-letter.example.yaml")
-#let resume = yaml("../resume.example.yaml")
+#let imports = yaml("../imports.yaml")
+
+#let cover-letter = yaml(imports.cover-letter)
+#let resume = yaml(imports.resume)
 
 #let cover-letter-content = {
     for paragraph in cover-letter [
