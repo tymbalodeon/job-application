@@ -1,15 +1,6 @@
-#import "header.typ": header
+#import "cover-letter-template.typ": cover-letter
 
-#set page(paper: "us-letter")
-#set text(10.7pt)
-#set par(justify: true)
-
-#header
-#v(-0.5em)
-#line(length: 100%)
-#v(0.5em)
-
-Dear Hiring Manager,
+#show: cover-letter
 
 Thank you for considering my application for the position of Senior Full-stack
 Engineer, Product Engineering. Hover engineer, Jeuel Wilkerson, recommended that
@@ -63,6 +54,3 @@ for application teams consuming our library.
 
 Thanks again for your consideration. I would be happy to discuss my
 qualifications further.
-
-Sincerely, \
-#emph[Ben Rosen]
