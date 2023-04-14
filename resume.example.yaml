@@ -1,0 +1,6 @@
+- person:
+    - name: "First Last"
+    - email: "first.last@gmail.com"
+    - phone: 0123456789
+    - github: "github.com/firstlast"
+    - city: "City, ST"
