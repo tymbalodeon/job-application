@@ -9,7 +9,6 @@
                 }
             }
         }
-    }
 }
 
 #let person = get-section("person")
