@@ -1,3 +1,5 @@
+#import "content.typ": name
+
 #let cover-letter(body) = [
     #set page(paper: "us-letter")
     #set text(10.7pt)
@@ -14,5 +16,5 @@
     #body
 
     Sincerely, \
-    #emph[Ben Rosen]
+    #emph[#name]
 ]
