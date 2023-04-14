@@ -1,7 +1,8 @@
-#let make-phone-number(phone_number) = {
-    let areaCode = phone_number.slice(0, 3)
-    let prefix = phone_number.slice(3, 6)
-    let number = phone_number.slice(6)
+#let make-phone-number(phone-number) = {
+    let phone-number = str(phone-number)
+    let areaCode = phone-number.slice(0, 3)
+    let prefix = phone-number.slice(3, 6)
+    let number = phone-number.slice(6)
 
     [(#areaCode) #prefix - #number]
 }
@@ -12,7 +13,6 @@
     for item in items.slice(0, -1) [
         #item |
     ]
-
     [#items.last()]
 }
 
