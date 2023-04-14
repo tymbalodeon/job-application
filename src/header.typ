@@ -4,7 +4,7 @@
 #let github = "github.com/tymbalodeon"
 #let city = "Philadelphia, PA"
 
-#let format_phone(phone_number) = {
+#let make_phone_number(phone_number) = {
     let areaCode = phone_number.slice(0, 3)
     let prefix = phone_number.slice(3, 6)
     let number = phone_number.slice(6)
@@ -24,14 +24,15 @@
 
 #let header = {
     let email = link(email)
-    let phone = format_phone(phone)
+    let phone = make_phone_number(phone)
     let github = link(github)
 
     show link: underline
+    set text(10pt)
 
     [
-        = #text(2em, name)
+        = #text(28pt, name)
         #contact((email, phone, github, city))
+        #space
     ]
-    space
 }
