@@ -1,4 +1,4 @@
-#let resume-yaml = yaml("resume.yaml")
+#let resume-yaml = yaml("../resume.yaml")
 
 #let get-section(section-name) = {
     for sections in resume-yaml {

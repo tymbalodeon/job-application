@@ -1,9 +1,0 @@
-- person:
-    - name: "Ben Rosen"
-    - email: "benjamin.j.rosen@gmail.com"
-    - phone: 6102913314
-    - github: "github.com/tymbalodeon"
-    - city: "Philadelphia, PA"
-
-- education:
-    - institution: Thinkful
