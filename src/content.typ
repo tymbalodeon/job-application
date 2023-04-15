@@ -43,14 +43,12 @@
 
 #let include-experience(experience) = {
     let experience-tags = convert-to-array(experience.tags)
-    let result = false
+    let result = true
 
-    if is-empty(experience-tags) {
-        result = true
-    } else {
+    if not is-empty(experience-tags) {
         for tag in experience-tags {
-            if tag in resume-tags {
-                result = true
+            if tag not in resume-tags {
+                result = false
                 break
             }
         }
