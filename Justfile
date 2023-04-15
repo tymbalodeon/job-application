@@ -63,10 +63,10 @@ _compile file output_file *tags:
     fi
     typst compile "{{file}}" "{{output_file}}"
     echo "Compiled {{output_file}}"
-    if [ -f "resume.yaml" ]; then
+    if [ -f "${RESUME}" ]; then
         sed -i "" "s/${resume}/{{example_resume}}/g" "${settings}"
     fi
-    if [ -f "cover-letter.yaml" ]; then
+    if [ -f "${COVER_LETTER}" ]; then
         sed -i "" \
             "s/${cover_letter}/{{example_cover_letter}}/g" \
             "${settings}"
@@ -135,7 +135,7 @@ list:
 # Open output files
 open:
     #!/usr/bin/env zsh
-    for file in "{{output_directory}}"/*.pdf; do
+    for file in "{{output_directory}}"/*.pdf(N); do
         open "${file}"
     done
 
