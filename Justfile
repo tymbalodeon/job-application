@@ -36,30 +36,42 @@ name := ```
 @_help:
     just --list
 
-_compile file output_file:
+_compile file output_file *tags:
     #!/usr/bin/env zsh
+    settings="settings.yaml"
+    added_tags=()
+    for tag in {{tags}}; do
+        if ! grep "${tag}" "${settings}" &>/dev/null; then
+            added_tag="  - ${tag}"
+            added_tags+="${added_tag}"
+            echo "${added_tag}" >> "${settings}"
+        fi
+    done
     if [ -f "resume.yaml" ]; then
         example_resume="resume.example.yaml"
         user_resume="resume.yaml"
-        sed -i "" "s/${example_resume}/${user_resume}/g" "settings.yaml"
+        sed -i "" "s/${example_resume}/${user_resume}/g" "${settings}"
     fi
     if [ -f "cover-letter.yaml" ]; then
         example_cover_letter="cover-letter.example.yaml"
         user_cover_letter="cover-letter.yaml"
         sed -i "" \
             "s/${example_cover_letter}/${user_cover_letter}/g" \
-            "settings.yaml"
+            "${settings}"
     fi
     typst compile "{{file}}" "{{output_file}}"
     echo "Compiled {{output_file}}"
     if [ -f "resume.yaml" ]; then
-        sed -i "" "s/${user_resume}/${example_resume}/g" "settings.yaml"
+        sed -i "" "s/${user_resume}/${example_resume}/g" "${settings}"
     fi
     if [ -f "cover-letter.yaml" ]; then
         sed -i "" \
             "s/${user_cover_letter}/${example_cover_letter}/g" \
-            "settings.yaml"
+            "${settings}"
     fi
+    for tag in "${added_tags[@]}"; do
+        sed -i "" "/${tag}/d" "${settings}"
+    done
 
 _get_output_file file:
     #!/usr/bin/env zsh
@@ -90,17 +102,23 @@ edit file:
     watchexec --exts typ,yaml -- just _compile "${source_file}" "${output_file}"
 
 # Compile input files
-compile *force:
+compile *args:
     #!/usr/bin/env zsh
     source_files=({{source_files}})
     output_files=()
+    tags=()
+    for arg in {{args}}; do
+        if [[ "${arg}" != "--"* ]]; then
+            tags+="${arg}"
+        fi
+    done
     for file in "${source_files[@]}"; do
         output_file="$(just _get_output_file "${file}")"
-        if [ "{{force}}" = "--force" ]; then
-            just _compile "${file}" "${output_file}"
+        if [[ "{{args}}" = *"--force"* ]]; then
+            just _compile "${file}" "${output_file}" "${tags[*]}"
         else
             checkexec "${output_file}" \
-            -- just _compile "${file}" "${output_file}"
+            -- just _compile "${file}" "${output_file}" "${tags[*]}"
         fi
     done
 
