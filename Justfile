@@ -88,8 +88,19 @@ _get_output_file file:
     output_files+="${output_file}"
     printf "${output_file}"
 
+_get_tags *args:
+    #!/usr/bin/env zsh
+    tags=()
+    for arg in {{args}}; do
+        if [[ "${arg}" != "--"* ]]; then
+            tags+="${arg}"
+        fi
+    done
+    printf "${tags[*]}"
+
+
 # Edit {resume|cover-letter} and live preview changes
-edit file:
+edit file *tags:
     #!/usr/bin/env zsh
     setopt extendedglob
     source_files=({{source_files}})
@@ -105,19 +116,16 @@ edit file:
     open "${output_file}"
     source_file="\"${source_file}\""
     output_file="\"${output_file}\""
-    watchexec --exts typ,yaml -- just _compile "${source_file}" "${output_file}"
+    tags=($(just _get_tags "{{tags}}"))
+    watchexec --exts typ,yaml \
+    -- just _compile "${source_file}" "${output_file}" "${tags[*]}"
 
 # Compile input files [options: "--force", "--open"]
 compile *args:
     #!/usr/bin/env zsh
     source_files=({{source_files}})
     output_files=()
-    tags=()
-    for arg in {{args}}; do
-        if [[ "${arg}" != "--"* ]]; then
-            tags+="${arg}"
-        fi
-    done
+    tags=($(just _get_tags "{{args}}"))
     for file in "${source_files[@]}"; do
         output_file="$(just _get_output_file "${file}")"
         if [[ "{{args}}" = *"--force"* ]]; then
