@@ -1,9 +1,19 @@
+set shell := ["zsh", "-c"]
 set dotenv-load
 
 input_directory := "src"
+source_files := ```
+    source_files=()
+    for file in src/*.typ; do
+        if [[ "${file:t}" != _* ]]; then
+            source_files+="${file}"
+        fi
+    done
+    printf "${source_files[*]}"
+```
 output_directory := ```
     output_directory="${OUTPUT_DIRECTORY:-}"
-    if [[ -z "${output_directory}" ]]; then
+    if [ -z "${output_directory}" ]; then
         output_directory="build"
     fi
     if [ -n "${output_directory}" ]; then
@@ -30,15 +40,30 @@ name := ```
     typst compile "{{file}}" "{{output_file}}"
     echo "Created {{output_file}}"
 
+edit file:
+    #!/usr/bin/env zsh
+    setopt extendedglob
+    source_files=({{source_files}})
+    input_file="{{file}}"
+    input_file="${input_file:l}"
+    for file in "${source_files[@]}"; do
+        if [[ "${file:r:t}" = *"${input_file}"* ]]; then
+            source_file="${file}"
+        fi
+    done
+    output_files=("{{output_directory}}"/*(#i)"${input_file}"*.pdf(N))
+    for file in "${output_files}"; do
+        output_file="${file}"
+    done
+    open "${output_file}"
+    open "${source_file}"
+    typst watch "${source_file}" "${output_file}"
+
+
 # Compile input files
 compile:
     #!/usr/bin/env zsh
-    source_files=()
-    for file in src/*.typ; do
-        if [[ "${file:t}" != _* ]]; then
-            source_files+="${file}"
-        fi
-    done
+    source_files=({{source_files}})
     output_files=()
     for file in "${source_files[@]}"; do
         output_file="${file:t:r}"
@@ -46,6 +71,14 @@ compile:
         output_file="{{output_directory}}/{{name}} ${output_file}.pdf"
         output_files+="${output_file}"
         checkexec "${output_file}" -- just _compile "${file}" "${output_file}"
+    done
+
+# List output files
+list:
+    #!/usr/bin/env zsh
+    output_files=("{{output_directory}}"/*.pdf(N))
+    for file in "${output_files[@]}"; do
+        echo "${file}."
     done
 
 # Remove output files
@@ -57,10 +90,3 @@ clean:
         echo "Removed ${file}."
     done
 
-# List output files
-list:
-    #!/usr/bin/env zsh
-    output_files=("{{output_directory}}"/*.pdf(N))
-    for file in "${output_files[@]}"; do
-        echo "${file}."
-    done
