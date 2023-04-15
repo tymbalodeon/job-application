@@ -61,7 +61,7 @@ edit file:
 
 
 # Compile input files
-compile:
+compile *force:
     #!/usr/bin/env zsh
     source_files=({{source_files}})
     output_files=()
@@ -70,7 +70,12 @@ compile:
         output_file="${(C)output_file/-/ }"
         output_file="{{output_directory}}/{{name}} ${output_file}.pdf"
         output_files+="${output_file}"
-        checkexec "${output_file}" -- just _compile "${file}" "${output_file}"
+        if [ "{{force}}" = "--force" ]; then
+            just _compile "${file}" "${output_file}"
+        else
+            checkexec "${output_file}" \
+            -- just _compile "${file}" "${output_file}"
+        fi
     done
 
 # List output files
