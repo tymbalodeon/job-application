@@ -106,7 +106,7 @@ _get_tags *args:
     printf "${tags[*]}"
 
 
-# Edit {resume|cover-letter} and live preview changes
+# Edit {resume|cover-letter}, compiling using <TAGS> on changes
 edit file *tags:
     #!/usr/bin/env zsh
     setopt extendedglob
