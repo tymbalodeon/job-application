@@ -1,6 +1,5 @@
 set dotenv-load
 
-name := "Ben Rosen"
 input_directory := "src"
 output_directory := ```
     output_directory="pdfs"
@@ -8,6 +7,17 @@ output_directory := ```
         mkdir -p "${output_directory}"
     fi
     printf "%s" "${output_directory}"
+```
+name := ```
+    if [ -f "resume.yaml" ]; then
+        yaml_file="resume.yaml"
+    else
+        yaml_file="resume.example.yaml"
+    fi
+    name="$(grep "  name:" "${yaml_file}" | awk -F: '{print $2}')"
+    name="${name//\"}"
+    name="${name/ /}"
+    printf "${name}"
 ```
 resume_input := input_directory + "/resume.typ"
 resume_output := output_directory + "/" + name + " Resume.pdf"
