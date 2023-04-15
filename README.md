@@ -23,6 +23,7 @@ Available commands:
 - `clean`: Remove output files
 - `compile \*args`: Compile input files [options: "--force", "--open"]
 - `edit file`: Edit {resume|cover-letter}, compiling using \<TAGS\> on changes
+- `example *open`: Compile and optionally open example files
 - `install`: Install dependencies
 - `list`: List output files
 - `open`: Open output files

@@ -170,6 +170,7 @@ clean:
         echo "Removed ${file}."
     done
 
+# Compile and optionally open example files
 example *open:
     #!/usr/bin/env zsh
     source_files=({{source_files}})
