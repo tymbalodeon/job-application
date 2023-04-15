@@ -1,4 +1,4 @@
-#import "resume-template.typ": resume
-#import "content.typ": name, experiences, awards, education, skills
+#import "_resume-template.typ": resume
+#import "_content.typ": name, experiences, awards, education, skills
 
 #show :resume(name, experiences, awards, education, skills)

@@ -2,8 +2,11 @@ set dotenv-load
 
 input_directory := "src"
 output_directory := ```
-    output_directory="pdfs"
-    if [ ! -d "${output_directory}" ]; then
+    output_directory="${OUTPUT_DIRECTORY:-}"
+    if [[ -z "${output_directory}" ]]; then
+        output_directory="build"
+    fi
+    if [ -n "${output_directory}" ]; then
         mkdir -p "${output_directory}"
     fi
     printf "%s" "${output_directory}"
@@ -19,40 +22,45 @@ name := ```
     name="${name/ /}"
     printf "${name}"
 ```
-resume_input := input_directory + "/resume.typ"
-resume_output := output_directory + "/" + name + " Resume.pdf"
-cover_letter_input := input_directory + "/cover-letter.typ"
-cover_letter_output := output_directory + "/" + name + " Cover Letter.pdf"
-
-export PDFS_DIRECTORY := ```
-    pdfs_directory="${PDFS_DIRECTORY:-}"
-    if [ -n "${pdfs_directory}" ]; then
-        mkdir -p "${pdfs_directory}"
-    fi
-    printf "%s" "${pdfs_directory}"
-```
 
 @_help:
     just --list
 
-# Open resume for editing, with live updates
-@resume:
-    open "{{resume_input}}" \
-    && typst watch "{{resume_input}}" "{{resume_output}}" --open
+@_compile file output_file:
+    typst compile "{{file}}" "{{output_file}}"
+    echo "Created {{output_file}}"
 
-# Open cover-letter for editing, with live updates
-@cover-letter:
-    open "{{cover_letter_input}}" \
-    && typst watch "{{cover_letter_input}}" "{{cover_letter_output}}" --open
-
-# Compile resume and cover-letter
-compile *copy:
+# Compile input files
+compile:
     #!/usr/bin/env zsh
-    typst compile "{{resume_input}}" "{{resume_output}}"
-    typst compile "{{cover_letter_input}}" "{{cover_letter_output}}"
-    if [ "{{copy}}" = "--copy" ]; then
-        pdf_files=("{{resume_output}}" "{{cover_letter_output}}")
-        for file in "${pdf_files[@]}"; do
-            cp "${file}" "${PDFS_DIRECTORY}"
-        done
-    fi
+    source_files=()
+    for file in src/*.typ; do
+        if [[ "${file:t}" != _* ]]; then
+            source_files+="${file}"
+        fi
+    done
+    output_files=()
+    for file in "${source_files[@]}"; do
+        output_file="${file:t:r}"
+        output_file="${(C)output_file/-/ }"
+        output_file="{{output_directory}}/{{name}} ${output_file}.pdf"
+        output_files+="${output_file}"
+        checkexec "${output_file}" -- just _compile "${file}" "${output_file}"
+    done
+
+# Remove output files
+clean:
+    #!/usr/bin/env zsh
+    output_files=("{{output_directory}}"/*.pdf(N))
+    for file in "${output_files[@]}"; do
+        rm -f "${file}"
+        echo "Removed ${file}."
+    done
+
+# List output files
+list:
+    #!/usr/bin/env zsh
+    output_files=("{{output_directory}}"/*.pdf(N))
+    for file in "${output_files[@]}"; do
+        echo "${file}."
+    done

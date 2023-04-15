@@ -1,4 +1,4 @@
-#import "header-template.typ": space
+#import "_header-template.typ": space
 
 #let make-experience(experience) = [
     #let (
@@ -85,7 +85,7 @@
         #line(length: 100%)
     ]
 
-    #include "header.typ"
+    #include "_header.typ"
 
     == Work Experience
     #for experience in experiences {
