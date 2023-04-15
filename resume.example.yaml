@@ -15,8 +15,6 @@ experience:
       - "Wrote Resume format in Typst"
       - "Wrote scripts to make compilation easier"
     tags:
-      - "short"
-      - "resume"
 
 awards:
   - name: "Best Resume"

@@ -1,7 +1,17 @@
-#let imports = yaml("../imports.yaml")
+#let settings = yaml("../settings.yaml")
 
-#let cover-letter = yaml(imports.cover-letter)
-#let resume = yaml(imports.resume)
+#let cover-letter = yaml(settings.cover-letter-content)
+#let resume = yaml(settings.resume-content)
+
+#let convert-to-array(item) = {
+    if type(item) == "array" {
+        item
+    } else {
+        (item,)
+    }
+}
+
+#let resume-tags = convert-to-array(settings.tags)
 
 #let cover-letter-content = {
     for paragraph in cover-letter [
@@ -18,7 +28,46 @@
 #let github = person.github
 #let city = person.city
 
-#let experiences = resume.experience
+#let is-empty(tags) = {
+    let result = true
+
+    for tag in tags {
+        if tag not in (none, "") {
+            result = false
+            break
+        }
+    }
+
+    result
+}
+
+#let include-experience(experience) = {
+    let experience-tags = convert-to-array(experience.tags)
+    let result = false
+
+    if is-empty(experience-tags) {
+        result = true
+    } else {
+        for tag in experience-tags {
+            if tag in resume-tags {
+                result = true
+                break
+            }
+        }
+    }
+
+    result
+}
+
+#let experiences = {
+    let experiences = resume.experience
+
+    if is-empty(resume-tags) {
+        experiences
+    } else {
+        experiences.filter(include-experience)
+    }
+}
 #let awards = resume.awards
 #let education = resume.education
 #let skills = resume.skills
