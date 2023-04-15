@@ -36,9 +36,30 @@ name := ```
 @_help:
     just --list
 
-@_compile file output_file:
+_compile file output_file:
+    #!/usr/bin/env zsh
+    if [ -f "resume.yaml" ]; then
+        example_resume="resume.example.yaml"
+        user_resume="resume.yaml"
+        sed -i "" "s/${example_resume}/${user_resume}/g" "settings.yaml"
+    fi
+    if [ -f "cover-letter.yaml" ]; then
+        example_cover_letter="cover-letter.example.yaml"
+        user_cover_letter="cover-letter.yaml"
+        sed -i "" \
+            "s/${example_cover_letter}/${user_cover_letter}/g" \
+            "settings.yaml"
+    fi
     typst compile "{{file}}" "{{output_file}}"
     echo "Compiled {{output_file}}"
+    if [ -f "resume.yaml" ]; then
+        sed -i "" "s/${user_resume}/${example_resume}/g" "settings.yaml"
+    fi
+    if [ -f "cover-letter.yaml" ]; then
+        sed -i "" \
+            "s/${user_cover_letter}/${example_cover_letter}/g" \
+            "settings.yaml"
+    fi
 
 _get_output_file file:
     #!/usr/bin/env zsh
