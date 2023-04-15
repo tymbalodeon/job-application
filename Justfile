@@ -2,6 +2,8 @@ set shell := ["zsh", "-c"]
 set dotenv-load
 
 input_directory := "src"
+example_resume := "\\.\\.\\/resume\\.example\\.yaml"
+example_cover_letter := "\\.\\.\\/cover-letter\\.example\\.yaml"
 source_files := ```
     source_files=()
     for file in src/*.typ; do
@@ -22,8 +24,8 @@ output_directory := ```
     printf "%s" "${output_directory}"
 ```
 name := ```
-    if [ -f "resume.yaml" ]; then
-        yaml_file="resume.yaml"
+    if [ -f "${RESUME}" ]; then
+        yaml_file="${RESUME}"
     else
         yaml_file="resume.example.yaml"
     fi
@@ -47,26 +49,26 @@ _compile file output_file *tags:
             echo "${added_tag}" >> "${settings}"
         fi
     done
-    if [ -f "resume.yaml" ]; then
-        example_resume="resume.example.yaml"
-        user_resume="resume.yaml"
-        sed -i "" "s/${example_resume}/${user_resume}/g" "${settings}"
+    if [ -f "${RESUME}" ]; then
+        resume="/${RESUME}"
+        resume="${resume//\//\\/}"
+        sed -i "" "s/{{example_resume}}/${resume}/g" "${settings}"
     fi
-    if [ -f "cover-letter.yaml" ]; then
-        example_cover_letter="cover-letter.example.yaml"
-        user_cover_letter="cover-letter.yaml"
+    if [ -f "${COVER_LETTER}" ]; then
+        cover_letter="/${COVER_LETTER}"
+        cover_letter="${cover_letter//\//\\/}"
         sed -i "" \
-            "s/${example_cover_letter}/${user_cover_letter}/g" \
+            "s/{{example_cover_letter}}/${cover_letter}/g" \
             "${settings}"
     fi
     typst compile "{{file}}" "{{output_file}}"
     echo "Compiled {{output_file}}"
     if [ -f "resume.yaml" ]; then
-        sed -i "" "s/${user_resume}/${example_resume}/g" "${settings}"
+        sed -i "" "s/${resume}/{{example_resume}}/g" "${settings}"
     fi
     if [ -f "cover-letter.yaml" ]; then
         sed -i "" \
-            "s/${user_cover_letter}/${example_cover_letter}/g" \
+            "s/${cover_letter}/{{example_cover_letter}}/g" \
             "${settings}"
     fi
     for tag in "${added_tags[@]}"; do
