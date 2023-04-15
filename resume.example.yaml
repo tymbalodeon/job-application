@@ -13,8 +13,11 @@ experience:
     end: "Present"
     highlights:
       - "Wrote Resume format in Typst"
-      - "Wrote scripts to make compilation easier"
+      - "Wrote Cover Letter format in Typst"
+      - "Created Justfile to run tasks more conveniently"
     tags:
+      - "long"
+      - "typesetting"
 
 awards:
   - name: "Best Resume"
