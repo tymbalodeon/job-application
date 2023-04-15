@@ -49,6 +49,7 @@ _get_output_file file:
     output_files+="${output_file}"
     printf "${output_file}"
 
+# Edit <FILE> and live preview changes
 edit file:
     #!/usr/bin/env zsh
     setopt extendedglob
