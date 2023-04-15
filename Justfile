@@ -38,7 +38,16 @@ name := ```
 
 @_compile file output_file:
     typst compile "{{file}}" "{{output_file}}"
-    echo "Created {{output_file}}"
+    echo "Compiled {{output_file}}"
+
+_get_output_file file:
+    #!/usr/bin/env zsh
+    output_file="{{file}}"
+    output_file="${output_file:t:r}"
+    output_file="${(C)output_file/-/ }"
+    output_file="{{output_directory}}/{{name}} ${output_file}.pdf"
+    output_files+="${output_file}"
+    printf "${output_file}"
 
 edit file:
     #!/usr/bin/env zsh
@@ -51,14 +60,12 @@ edit file:
             source_file="${file}"
         fi
     done
-    output_files=("{{output_directory}}"/*(#i)"${input_file}"*.pdf(N))
-    for file in "${output_files}"; do
-        output_file="${file}"
-    done
-    open "${output_file}"
+    output_file="$(just _get_output_file "${input_file}")"
     open "${source_file}"
-    typst watch "${source_file}" "${output_file}"
-
+    open "${output_file}"
+    source_file="\"${source_file}\""
+    output_file="\"${output_file}\""
+    watchexec --exts typ,yaml -- just _compile "${source_file}" "${output_file}"
 
 # Compile input files
 compile *force:
@@ -66,10 +73,7 @@ compile *force:
     source_files=({{source_files}})
     output_files=()
     for file in "${source_files[@]}"; do
-        output_file="${file:t:r}"
-        output_file="${(C)output_file/-/ }"
-        output_file="{{output_directory}}/{{name}} ${output_file}.pdf"
-        output_files+="${output_file}"
+        output_file="$(just _get_output_file file)"
         if [ "{{force}}" = "--force" ]; then
             just _compile "${file}" "${output_file}"
         else
