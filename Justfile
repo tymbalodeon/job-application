@@ -38,7 +38,7 @@ name := ```
 @_help:
     just --list
 
-# Install dependencies.
+# Install dependencies
 @install:
     ./install_dependencies.sh
 
@@ -88,7 +88,7 @@ _get_output_file file:
     output_files+="${output_file}"
     printf "${output_file}"
 
-# Edit <FILE> and live preview changes
+# Edit {resume|cover-letter} and live preview changes
 edit file:
     #!/usr/bin/env zsh
     setopt extendedglob
@@ -107,7 +107,7 @@ edit file:
     output_file="\"${output_file}\""
     watchexec --exts typ,yaml -- just _compile "${source_file}" "${output_file}"
 
-# Compile input files
+# Compile input files [options: "--force", "--open"]
 compile *args:
     #!/usr/bin/env zsh
     source_files=({{source_files}})
@@ -127,6 +127,9 @@ compile *args:
             -- just _compile "${file}" "${output_file}" "${tags[*]}"
         fi
     done
+    if [[ "{{args}}" = *"--open"* ]]; then
+        just open
+    fi
 
 # List output files
 list:
