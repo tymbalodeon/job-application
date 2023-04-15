@@ -17,9 +17,7 @@ dependencies.
 
 ## Tasks
 
-Task scripts are provided to facilitate development. These can be called
-directly (using `./scripts/main <COMMAND> <ARGS>`) or using
-[`just`](https://just.systems/man/en/ "just"). Available commands:
+Task scripts are provided using [`just`](https://just.systems/man/en/ "just"). Available commands:
 
 - `clean`: Remove output files
 - `compile \*args`: Compile input files
