@@ -73,7 +73,7 @@ compile *force:
     source_files=({{source_files}})
     output_files=()
     for file in "${source_files[@]}"; do
-        output_file="$(just _get_output_file file)"
+        output_file="$(just _get_output_file "${file}")"
         if [ "{{force}}" = "--force" ]; then
             just _compile "${file}" "${output_file}"
         else
