@@ -81,6 +81,13 @@ list:
         echo "${file}."
     done
 
+# Open output files
+open:
+    #!/usr/bin/env zsh
+    for file in "{{output_directory}}"/*.pdf; do
+        open "${file}"
+    done
+
 # Remove output files
 clean:
     #!/usr/bin/env zsh
