@@ -38,6 +38,10 @@ name := ```
 @_help:
     just --list
 
+# Install dependencies.
+@install:
+    ./install_dependencies.sh
+
 _compile file output_file *tags:
     #!/usr/bin/env zsh
     settings="settings.yaml"
