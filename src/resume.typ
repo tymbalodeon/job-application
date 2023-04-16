@@ -1,5 +1,5 @@
 #import "_content.typ": name, experiences, awards, education, skills
-#import "_header-template.typ": space
+#import "_header.typ": space
 
 #let make-experience(experience) = [
     #let (
@@ -47,7 +47,11 @@
 ]
 
 #let make-degree(degree) = [
-    #let (institution, location, degree, year) = degree
+    #let (institution, location, degree, concentration, year) = degree
+
+    #if concentration != none {
+        degree = [#degree, #concentration]
+    }
 
     #grid(
         columns: (auto, 1fr),
@@ -80,7 +84,7 @@
 #set text(10pt)
 
 #show heading.where(level: 2): heading => [
-    #heading
+    #smallcaps(heading)
     #v(-0.7em)
     #line(length: 100%)
 ]
