@@ -19,10 +19,11 @@
 #let email = link(email)
 #let phone = make-phone-number(phone)
 #let github = link(github)
+#let space = v(0.8em)
 
 #show link: underline
 #set text(10pt)
 
 = #text(28pt, smallcaps(name))
 #contact((email, phone, github, city))
-#v(0.8em)
+#space
