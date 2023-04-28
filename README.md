@@ -30,7 +30,7 @@ Available commands:
 
 ## Usage
 
-### Demo
+### Example
 
 The output style can be viewed using example data by running `just example --open`.
 
