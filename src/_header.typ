@@ -9,8 +9,6 @@
     [(#areaCode) #prefix - #number]
 }
 
-#let space = v(0.8em)
-
 #let contact(items) = {
     for item in items.slice(0, -1) [
         #item |
@@ -27,4 +25,4 @@
 
 = #text(28pt, smallcaps(name))
 #contact((email, phone, github, city))
-#space
+#v(0.8em)

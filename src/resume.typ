@@ -1,5 +1,4 @@
 #import "_content.typ": name, experiences, awards, education, skills
-#import "_header.typ": space
 
 #let make-experience(experience) = [
     #let (
@@ -28,8 +27,6 @@
             - #highlight
         ]
     ]
-
-    #space
 ]
 
 #let make-award(award) = [
@@ -47,6 +44,7 @@
 ]
 
 #let make-degree(degree) = [
+    #set par(leading: 0.3em)
     #let (institution, location, degree, concentration, year) = degree
 
     #if concentration != none {
@@ -101,14 +99,10 @@
     make-award(award)
 }
 
-#space
-
 == Education
 #for degree in education {
     make-degree(degree)
 }
-
-#space
 
 == Skills
 #for skill in skills [
