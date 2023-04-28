@@ -45,6 +45,8 @@ an output folder outside of the project directory, and run `just edit
 {resume|cover-letter}>` to open a file for editing and compiling on changes, or
 `just compile` to compile only.
 
+_Note: Paths must be full paths, NOT relative paths!_
+
 ### Tags
 
 Resume content can be tagged with keywords to allow for compiling different
