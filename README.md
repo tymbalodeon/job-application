@@ -10,7 +10,7 @@ Create resumes and cover letters created with [Typst](https://typst.app/docs).
 - [skim](https://skim-app.sourceforge.io/ "skim")
 
 Dependencies can be installed by running the included script:
-`./install_dependencies`
+`./install_dependencies.sh`
 
 Or, if `just` is already installed: `just install` to install the rest of the
 dependencies.
