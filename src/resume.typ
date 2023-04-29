@@ -40,7 +40,7 @@
         align(right)[
             #strong[#year]
         ]
-)
+    )
 ]
 
 #let make-degree(degree) = [

@@ -125,7 +125,7 @@ edit file *tags:
     output_file="\"${output_file}\""
     tags=($(just _get_tags "{{tags}}"))
     watchexec --exts typ,yaml \
-    -- just _compile "${source_file}" "${output_file}" "${tags[*]}"
+        -- just _compile "${source_file}" "${output_file}" "${tags[*]}"
 
 # Compile input files [options: "--force", "--open"]
 compile *args:
@@ -138,8 +138,8 @@ compile *args:
         if [[ "{{args}}" = *"--force"* ]]; then
             just _compile "${file}" "${output_file}" "${tags[*]}"
         else
-            checkexec "${output_file}" \
-            -- just _compile "${file}" "${output_file}" "${tags[*]}"
+            checkexec "${output_file}" src/*.typ  \
+                -- just _compile "${file}" "${output_file}" "${tags[*]}"
         fi
     done
     if [[ "{{args}}" = *"--open"* ]]; then
