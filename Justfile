@@ -124,8 +124,8 @@ edit file *tags:
     source_file="\"${source_file}\""
     output_file="\"${output_file}\""
     tags=($(just _get_tags "{{tags}}"))
-    watchexec --exts typ,yaml \
-        -- just _compile "${source_file}" "${output_file}" "${tags[*]}"
+    watchexec --exts typ \
+        just _compile "${source_file}" "${output_file}" "${tags[*]}"
 
 # Compile input files [options: "--force", "--open"]
 compile *args:
