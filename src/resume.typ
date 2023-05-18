@@ -62,6 +62,8 @@
             #emph[#location]
         ]
     )
+
+    #v(-0.3em)
 ]
 
 #let make-skill(skill) = box[
