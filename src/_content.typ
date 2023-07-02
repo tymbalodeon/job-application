@@ -1,4 +1,4 @@
-#let settings = yaml("../settings.yaml")
+#let settings = yaml("settings.yaml")
 
 #let cover-letter = yaml(settings.cover-letter-content)
 #let resume = yaml(settings.resume-content)

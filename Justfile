@@ -2,8 +2,8 @@ set shell := ["zsh", "-c"]
 set dotenv-load
 
 input_directory := "src"
-example_resume := "\\.\\.\\/resume\\.example\\.yaml"
-example_cover_letter := "\\.\\.\\/cover-letter\\.example\\.yaml"
+example_resume := "resume\\.example\\.yaml"
+example_cover_letter := "cover-letter\\.example\\.yaml"
 source_files := ```
     source_files=()
     for file in src/*.typ; do
@@ -33,7 +33,7 @@ output_directory := ```
 
 _compile file output_file *args:
     #!/usr/bin/env zsh
-    settings="settings.yaml"
+    settings="src/settings.yaml"
     added_tags=()
     for tag in {{args}}; do
         if ! grep "${tag}" "${settings}" &>/dev/null; then
@@ -43,25 +43,23 @@ _compile file output_file *args:
         fi
     done
     if [[ "{{args}}" != *"--example"* ]] && [ -f "${RESUME}" ]; then
-        resume="/${RESUME}"
-        resume="${resume//\//\\/}"
-        sed -i "" "s/{{example_resume}}/${resume}/g" "${settings}"
+        cp "/${RESUME}" src
+        sed -i "" "s/{{example_resume}}/resume\.yaml/g" "${settings}"
     fi
     if [[ "{{args}}" != *"--example"* ]] && [ -f "${COVER_LETTER}" ]; then
-        cover_letter="/${COVER_LETTER}"
-        cover_letter="${cover_letter//\//\\/}"
+        cp "/${COVER_LETTER}" src
         sed -i "" \
-            "s/{{example_cover_letter}}/${cover_letter}/g" \
+            "s/{{example_cover_letter}}/cover-letter\.yaml/g" \
             "${settings}"
     fi
     typst compile "{{file}}" "{{output_file}}"
     echo "Compiled {{output_file}}"
     if [[ "{{args}}" != *"--example"* ]] && [ -f "${RESUME}" ]; then
-        sed -i "" "s/${resume}/{{example_resume}}/g" "${settings}"
+        sed -i "" "s/resume\.yaml/{{example_resume}}/g" "${settings}"
     fi
     if [[ "{{args}}" != *"--example"* ]] && [ -f "${COVER_LETTER}" ]; then
         sed -i "" \
-            "s/${cover_letter}/{{example_cover_letter}}/g" \
+            "s/cover-letter\.yaml/{{example_cover_letter}}/g" \
             "${settings}"
     fi
     for tag in "${added_tags[@]}"; do
@@ -73,7 +71,7 @@ _get_name *example:
     if [[ "{{example}}" != "--example" ]] && [ -f "${RESUME}" ]; then
         yaml_file="${RESUME}"
     else
-        yaml_file="resume.example.yaml"
+        yaml_file="src/resume.example.yaml"
     fi
     name="$(grep "  name:" "${yaml_file}" | awk -F: '{print $2}')"
     name="${name//\"}"
@@ -151,7 +149,7 @@ list:
     #!/usr/bin/env zsh
     output_files=("{{output_directory}}"/*.pdf(N))
     for file in "${output_files[@]}"; do
-        echo "${file}."
+        echo "${file}"
     done
 
 # Open output files
@@ -167,7 +165,7 @@ clean:
     output_files=("{{output_directory}}"/*.pdf(N))
     for file in "${output_files[@]}"; do
         rm -f "${file}"
-        echo "Removed ${file}."
+        echo "Removed ${file}"
     done
 
 # Compile and optionally open example files
