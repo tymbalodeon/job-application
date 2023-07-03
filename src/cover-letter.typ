@@ -17,9 +17,5 @@ Dear Hiring Manager,
 #cover-letter-content
 \
 
-
-#grid(
-    columns: (1fr, 75%),
-    [],
-    [Sincerely,\ #emph(name)]
-)
+#h(-2em) Sincerely,\
+#emph(name)
