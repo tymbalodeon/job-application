@@ -1,8 +1,8 @@
 #import "_content.typ": cover-letter-content, name
 
 #set page(paper: "us-letter")
-#set text(10.7pt)
-#set par(justify: true)
+#set text(11pt)
+#set par(justify: true, first-line-indent: 2em)
 
 #include "_header.typ"
 
@@ -11,8 +11,15 @@
 #v(0.5em)
 
 Dear Hiring Manager,
+\
+\
 
 #cover-letter-content
+\
 
-Sincerely, \
-#emph[#name]
+
+#grid(
+    columns: (1fr, 75%),
+    [],
+    [Sincerely,\ #emph(name)]
+)
