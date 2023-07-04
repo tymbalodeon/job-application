@@ -1,7 +1,8 @@
 #import "_content.typ": cover-letter-content, name
 
+#show par: set block(spacing: 0.65em)
 #set page(paper: "us-letter")
-#set text(11pt)
+#set text(12pt)
 #set par(justify: true, first-line-indent: 2em)
 
 #include "_header.typ"
@@ -15,6 +16,7 @@ Dear Hiring Manager,
 \
 
 #cover-letter-content
+\
 \
 
 #h(-2em) Sincerely,\
